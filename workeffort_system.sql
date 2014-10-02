@@ -29,15 +29,22 @@ constraint fk_work_req FOREIGN KEY (req_type_id) REFERENCES req_type);
  des varchar2(30),
  constraint pk_rrt PRIMARY KEY (rrt_id));
  
+ create table party(
+ party_id varchar2(10),
+ name varchar2(30),
+ constraint pk_party PRIMARY KEY (party_id));
+ 
 create table party_work_req_role(
 pwrr_id varchar2(10),
 work_req_id varchar2(10),
 rrt_id varchar2(10),
+party_id varchar2(10),
 from_date varchar2(20),
 thru_date varchar2(20),
 constraint pk_pwrr PRIMARY KEY (pwrr_id),
 constraint fk_pwrr FOREIGN KEY (work_req_id) REFERENCES work_req,
-constraint fk_pwrr2 FOREIGN KEY (rrt_id) REFERENCES req_role_type);
+constraint fk_pwrr2 FOREIGN KEY (rrt_id) REFERENCES req_role_type,
+constraint fk_pwrr3 FOREIGN KEY (party_id) REFERENCES party);
 
 create table order_item(
 oi_seq_id varchar2(10),

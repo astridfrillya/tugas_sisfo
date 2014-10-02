@@ -89,3 +89,99 @@ insert into work_req_type values(
 '-',
 '',
 '-');
+
+ insert into req_role_type values(
+ 'rrt01',
+ 'created for');
+ 
+ insert into req_role_type values(
+ 'rrt02',
+ 'created by');
+ 
+  insert into req_role_type values(
+ 'rrt03',
+ 'responsible for');
+ 
+  insert into req_role_type values(
+ 'rrt04',
+ 'authorized by');
+ 
+insert into party values(
+'p01',
+'ABC Manufacturing');
+
+insert into party values(
+'p02',
+'John Smith');
+
+insert into party values(
+'p03',
+'Sam Bossman');
+
+insert into party values(
+'p04',
+'Dick Jones');
+
+insert into party_work_req_role values(
+'pwrr01',
+'50985',
+'rrt01',
+'p01',
+'5 juli 2000',
+' ');
+
+insert into party_work_req_role values(
+'pwrr02',
+'50985',
+'rrt02',
+'p02',
+'5 juli 2000',
+' ');
+
+insert into party_work_req_role values(
+'pwrr03',
+'50985',
+'rrt03',
+'p02',
+'5 juli 2000',
+'15 desember 2000');
+
+insert into party_work_req_role values(
+'pwrr04',
+'50985',
+'rrt04',
+'p03',
+'8 juli 2000',
+' ');
+
+insert into party_work_req_role values(
+'pwrr05',
+'50985',
+'rrt03',
+'p04',
+'16 desember 2000',
+'20 februari 2001');
+
+insert into party_work_req_role values(
+'pwrr06',
+'50985',
+'rrt03',
+'p02',
+'21 februari 2001',
+' ');
+
+insert into party_work_req_role values(
+'pwrr07',
+'60102',
+'rrt01',
+'p03',
+'10 juni 2000',
+' ');
+
+insert into party_work_req_role values(
+'pwrr08',
+'60102',
+'rrt03',
+'p04',
+'15 juni 2000',
+'1 januari 2001');
