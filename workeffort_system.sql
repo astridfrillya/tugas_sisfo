@@ -88,5 +88,5 @@ constraint pk_we_bd PRIMARY KEY (we_bd_id),
 constraint fk_we_bd FOREIGN KEY (we_id) REFERENCES work_effort,
 constraint fk_we_bd2 FOREIGN KEY (wetype_id) REFERENCES we_type,
 constraint fk_we_bd3 FOREIGN KEY (wfwr_id) REFERENCES we_from_work_req,
-constraint fk_we_bd4 FOREIGN KEY (wfoi_id) REFERENCES we_from_order_item);
+constraint fk_we_bd4 FOREIGN KEY (wfoi_id) REFERENCES we_from_order_item); 
 
