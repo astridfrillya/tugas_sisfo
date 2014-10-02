@@ -39,12 +39,54 @@ constraint pk_pwrr PRIMARY KEY (pwrr_id),
 constraint fk_pwrr FOREIGN KEY (work_req_id) REFERENCES work_req,
 constraint fk_pwrr2 FOREIGN KEY (rrt_id) REFERENCES req_role_type);
 
-create table we_from_work_req(
+create table order_item(
+oi_seq_id varchar2(10),
+est_deliv_date varchar2(20),
+quantity int,
+unit_price int,
+constraint pk_oi PRIMARY KEY (oi_seq_id));
+
+ create table we_type(
+ wetype_id varchar2(10),
+ des varchar2(50),
+ standard_work_hours int,
+ constraint pk_we_type PRIMARY KEY (wetype_id));
+ 
+ create table work_effort(
 we_id varchar2(10),
-name varchar2(20),
+name varchar2(30),
 des varchar2(50),
 start_date varchar2(20),
+completion_date varchar2(20),
+estimated_hours int,
+constraint pk_we PRIMARY KEY (we_id));
+
+create table we_from_order_item(
+wfoi_id varchar2(10),
+we_id varchar2(10),
+oi_seq_id varchar2(10),
+req_item varchar2(10),
+constraint pk_wfoi PRIMARY KEY (wfoi_id),
+constraint fk_wfoi FOREIGN KEY (oi_seq_id) REFERENCES order_item,
+constraint fk_wfoi2 FOREIGN KEY (we_id) REFERENCES work_effort);
+
+create table we_from_work_req(
+wfwr_id varchar2(10),
+we_id varchar2(10),
 work_req_id varchar2(10),
-constraint pk_wfwr PRIMARY KEY (we_id),
-constraint fk_wfwr FOREIGN KEY (work_req_id) REFERENCES work_req);
+constraint pk_wfwr PRIMARY KEY (wfwr_id),
+constraint fk_wfwr FOREIGN KEY (we_id) REFERENCES work_effort,
+constraint fk_wfwr2 FOREIGN KEY (work_req_id) REFERENCES work_req);
+
+create table we_breakdown(
+we_bd_id varchar2(10),
+we_id varchar2(10),
+wetype_id varchar2(10),
+wfwr_id varchar2(10),
+wfoi_id varchar2(10),
+constraint pk_we_bd PRIMARY KEY (we_bd_id),
+constraint fk_we_bd FOREIGN KEY (we_id) REFERENCES work_effort,
+constraint fk_we_bd2 FOREIGN KEY (wetype_id) REFERENCES we_type,
+constraint fk_we_bd3 FOREIGN KEY (wfwr_id) REFERENCES we_from_work_req,
+constraint fk_we_bd4 FOREIGN KEY (wfoi_id) REFERENCES we_from_order_item);
 
