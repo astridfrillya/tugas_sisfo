@@ -185,3 +185,152 @@ insert into party_work_req_role values(
 'p04',
 '15 juni 2000',
 '1 januari 2001');
+
+ insert into we_type values(
+ 'type1',
+ 'job',
+ '');
+
+ insert into we_type values(
+ 'type2',
+ 'activity',
+ '20');
+ 
+ insert into we_type values(
+ 'type3',
+ 'activity',
+ '10');
+ 
+ insert into we_type values(
+ 'type4',
+ 'activity',
+ '5');
+ 
+ insert into we_type values(
+ 'type5',
+ 'task',
+ '5');
+ 
+ insert into we_type values(
+ 'type6',
+ 'task',
+ '8'); 
+ 
+ insert into we_type values(
+ 'type7',
+ 'task',
+ '7');
+ 
+insert into work_effort values(
+'28045',
+'type1',
+'production run',
+'prod run of 3500 pencils',
+'1 juni 2000',
+'4 juni 2000',
+'');
+
+insert into work_effort values(
+'51285',
+'type1',
+'production run',
+'prod run of 1500 pencils',
+'5 desember 2000',
+'4 januari 2000',
+'');
+
+insert into work_effort values(
+'51298',
+'type1',
+'production run',
+'prod run of 1500 pencils',
+'6 desember 2000',
+'1 februari 2001',
+'');
+
+insert into work_effort values(
+'29534',
+'type1',
+'production run #1',
+'prod run of 1500 pencils',
+'23 februari 2001',
+'4 juni 2001',
+'');
+
+insert into work_effort values(
+'29874',
+'type1',
+'production run #2',
+'prod run of 1000 pencils',
+'23 maret 2001',
+'4 juni 2001',
+'');
+
+insert into work_effort values(
+'12001',
+'type2',
+'set up production line',
+'',
+'1 juni 2001',
+'4 juni 2001',
+'20');
+
+insert into work_effort values(
+'3454587',
+'type6',
+'move pen manufactur in place',
+'',
+'1 juni 2000',
+'1 juni 2001',
+'7');
+
+insert into we_from_work_req values(
+'wfwr01',
+'28045',
+'50985');
+
+insert into we_from_work_req values(
+'wfwr02',
+'28045',
+'51245');
+
+insert into we_from_work_req values(
+'wfwr03',
+'51285',
+'51285');
+
+insert into we_from_work_req values(
+'wfwr04',
+'51298',
+'');
+
+insert into order_item values(
+'oi01',
+'2 oktober 2000',
+2000,
+100000);
+
+insert into order_item values(
+'oi02',
+'2 oktober 2000',
+2500,
+100000);
+
+insert into we_from_order_item values(
+'wfoi01',
+'29534',
+'oi02',
+'customized');
+
+insert into we_from_order_item values(
+'wfoi02',
+'29874',
+'oi02',
+'customized');
+
+insert into we_breakdown values(
+'webd01',
+'28045',
+'type1',
+'wfwr01',
+'');

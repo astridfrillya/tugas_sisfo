@@ -61,12 +61,14 @@ constraint pk_oi PRIMARY KEY (oi_seq_id));
  
  create table work_effort(
 we_id varchar2(10),
+wetype_id varchar2(10),
 name varchar2(30),
 des varchar2(50),
 start_date varchar2(20),
 completion_date varchar2(20),
 estimated_hours int,
-constraint pk_we PRIMARY KEY (we_id));
+constraint pk_we PRIMARY KEY (we_id),
+constraint fk_we FOREIGN KEY (wetype_id) REFERENCES we_type);
 
 create table we_from_order_item(
 wfoi_id varchar2(10),
