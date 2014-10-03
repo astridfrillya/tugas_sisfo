@@ -4,6 +4,6 @@ tugas_sisfo
 
 Nama Kelompok
 
-Astrid Frillya Septiany
-Nufaisa Pamikatsih
-Melviana Anggraeni
+Astrid Frillya Septiany (1103110173)
+Nufaisa Pamikatsih      (1103110156)
+Melviana Anggraeni      (1103110061)
