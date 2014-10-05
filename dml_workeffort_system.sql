@@ -122,6 +122,14 @@ insert into party values(
 'p04',
 'Dick Jones');
 
+insert into party values(
+'p05',
+'Bob Jenkins');
+
+insert into party values(
+'p06',
+'Jane Smith');
+
 insert into party_work_req_role values(
 'pwrr01',
 '50985',
@@ -267,7 +275,7 @@ insert into work_effort values(
 '');
 
 insert into work_effort values(
-'12001',
+'12000',
 'type2',
 'set up production line',
 '',
@@ -276,13 +284,22 @@ insert into work_effort values(
 '20');
 
 insert into work_effort values(
-'3454587',
+'34545',
 'type6',
 'move pen manufactur in place',
 '',
 '1 juni 2000',
 '1 juni 2001',
 '7');
+
+insert into work_effort values(
+'39409',
+'type4',
+'develop a sales and marketing',
+'',
+'2 januari 2001',
+'15 september 2001',
+'');
 
 insert into we_from_work_req values(
 'wfwr01',
@@ -329,8 +346,164 @@ insert into we_from_order_item values(
 'customized');
 
 insert into we_breakdown values(
-'webd01',
-'28045',
-'type1',
-'wfwr01',
+'1',
+'120001',
+'12000');
+
+insert into we_breakdown values(
+'2',
+'120001',
+'28045');
+
+insert into we_breakdown values(
+'4',
+'120002',
+'28045');
+
+insert into we_party_assignment_data values(
+'wepad01',
+'39409',
+'p04',
+'project manager',
+'2 januari 2001',
+'15 september 2001',
 '');
+
+insert into we_party_assignment_data values(
+'wepad02',
+'39409',
+'p05',
+'project administrator',
+'',
+'',
+'');
+
+insert into we_party_assignment_data values(
+'wepad03',
+'39409',
+'p02',
+'team member',
+'5 maret 2001',
+'6 agustus 2001',
+'leaving vacation on 7 agustus, 2001');
+
+insert into we_party_assignment_data values(
+'wepad04',
+'39409',
+'p02',
+'team member',
+'1 september 2001',
+'2 desember 2001',
+'');
+
+insert into we_party_assignment_data values(
+'wepad05',
+'39409',
+'p06',
+'team member',
+'6 agustus 2001',
+'15 september 2001',
+'very excited about assignment');
+
+insert into party_skill_data values(
+'p01',
+'market research',
+'30',
+'9');
+
+insert into party_skill_data values(
+'p02',
+'project management',
+'20',
+'10');
+
+insert into party_skill_data values(
+'p02',
+'marketing',
+'5',
+'6');
+
+insert into party_skill_data values(
+'p04',
+'project management',
+'12',
+'8');
+
+insert into we_status values(
+'s1',
+'1',
+'started 2jun2000 1pm, complete 2jun2000 2pm');
+
+insert into we_status values(
+'s2',
+'4',
+'started 3jun2000 1pm, complete 3jun2000 4pm');
+
+insert into time_sheet_entry values(
+'1390',
+'1 jan 2001',
+'15 jan 2001',
+'p02',
+'29000',
+'2 jan 2001',
+'4 jan 2001',
+13);
+
+insert into work_effort values(
+'29000',
+'type3',
+'develop project plan',
+'',
+'',
+'',
+'6');
+
+insert into rare_type values(
+'r3',
+'regular billing');
+
+insert into rare_type values(
+'r2',
+'overtime billing');
+
+insert into rare_type values(
+'r1',
+'regular pay');
+
+insert into rare_type values(
+'r4',
+'overtime pay');
+
+insert into we_rate values(
+'werate1',
+'develop accounting program',
+'p07',
+'r3',
+'15may2000',
+'14may2001',
+65);
+
+insert into fixed_asset_type values(
+'1390',
+'pm machine',
+'equipment');
+
+insert into fixed_asset_type values(
+'2266',
+'fork lift',
+'vehicle');
+
+insert into fixed_asset_type values(
+'1000',
+'pm machine',
+'equipment');
+
+insert into fixed_asset values(
+'fa1',
+'1000',
+'pencil labeller #1',
+'12 juni 2000',
+'12 juni 2000',
+'12 juni 2001',
+1000000,
+'pens/day');
