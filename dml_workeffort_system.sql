@@ -406,25 +406,26 @@ insert into we_party_assignment_data values(
 'very excited about assignment');
 
 insert into party_skill_data values(
+'001',
 'p01',
 'market research',
 '30',
 '9');
 
 insert into party_skill_data values(
-'p02',
+'002','p02',
 'project management',
 '20',
 '10');
 
 insert into party_skill_data values(
-'p02',
+'003','p02',
 'marketing',
 '5',
 '6');
 
 insert into party_skill_data values(
-'p04',
+'004','p04',
 'project management',
 '12',
 '8');

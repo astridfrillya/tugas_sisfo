@@ -1,211 +1,203 @@
 ======================================DDL=================================================
 
 create table req_type(
-req_type_id varchar2(10),
-description varchar2(50),
+req_type_id varchar(10),
+description varchar(50),
 constraint pk_req_type PRIMARY KEY (req_type_id));
 
 create table work_req(
-work_req_id varchar2(10),
-req_type_id varchar2(10),
-req_creation_date varchar2(20),
-req_by_date varchar2(20),
-description varchar2(50),
-constraint pk_work_req PRIMARY KEY (work_req_id),
-constraint fk_work_req FOREIGN KEY (req_type_id) REFERENCES req_type);
+work_req_id varchar(10),
+fk_work_req varchar(10) REFERENCES req_type(req_type_id),
+req_creation_date varchar(20),
+req_by_date varchar(20),
+description varchar(50), 
+PRIMARY KEY (work_req_id)
+);
 
  create table work_req_type(
- wrt_id varchar2(10),
- work_req_id varchar2(10),
- description varchar2(50),
- product varchar2(50),
+ wrt_id varchar(10),
+ fk_work_req_type varchar(10) REFERENCES work_req(work_req_id),
+ description varchar(50),
+ product varchar(50),
  quantity int,
- deliverable varchar2(50),
- constraint pk_work_req_type PRIMARY KEY (wrt_id),
- constraint fk_work_req_type FOREIGN KEY (work_req_id) REFERENCES work_req);
+ deliverable varchar(50),
+PRIMARY KEY (wrt_id)
+);
  
  create table req_role_type(
- rrt_id varchar2(10),
- des varchar2(30),
+ rrt_id varchar(10),
+ des varchar(30),
  constraint pk_rrt PRIMARY KEY (rrt_id));
  
  create table party(
- party_id varchar2(10),
- name varchar2(30),
+ party_id varchar(10),
+ name varchar(30),
  constraint pk_party PRIMARY KEY (party_id));
  
 create table party_work_req_role(
-pwrr_id varchar2(10),
-work_req_id varchar2(10),
-rrt_id varchar2(10),
-party_id varchar2(10),
-from_date varchar2(20),
-thru_date varchar2(20),
-constraint pk_pwrr PRIMARY KEY (pwrr_id),
-constraint fk_pwrr FOREIGN KEY (work_req_id) REFERENCES work_req,
-constraint fk_pwrr2 FOREIGN KEY (rrt_id) REFERENCES req_role_type,
-constraint fk_pwrr3 FOREIGN KEY (party_id) REFERENCES party);
+pwrr_id varchar(10),
+fk_pwrr varchar(10) REFERENCES work_req(work_req_id),
+fk_pwrr2 varchar(10)   REFERENCES req_role_type(rrt_id),
+fk_pwrr3 varchar(10)  REFERENCES party(rrt_id),
+from_date varchar(20),
+thru_date varchar(20),
+constraint pk_pwrr PRIMARY KEY (pwrr_id)
+);
 
 create table order_item(
-oi_seq_id varchar2(10),
-est_deliv_date varchar2(20),
+oi_seq_id varchar(10),
+est_deliv_date varchar(20),
 quantity int,
 unit_price int,
 constraint pk_oi PRIMARY KEY (oi_seq_id));
 
  create table we_type(
- wetype_id varchar2(10),
- des varchar2(50),
+ wetype_id varchar(10),
+ des varchar(50),
  standard_work_hours int,
  constraint pk_we_type PRIMARY KEY (wetype_id));
  
  create table work_effort(
-we_id varchar2(10),
-wetype_id varchar2(10),
-name varchar2(30),
-des varchar2(50),
-start_date varchar2(20),
-completion_date varchar2(20),
+we_id varchar(10),
+fk_we varchar(10)  REFERENCES we_type(wetype_id),
+name varchar(30),
+des varchar(50),
+start_date varchar(20),
+completion_date varchar(20),
 estimated_hours int,
 constraint pk_we PRIMARY KEY (we_id),
-constraint fk_we FOREIGN KEY (wetype_id) REFERENCES we_type);
+);
 
 create table we_from_order_item(
-wfoi_id varchar2(10),
-we_id varchar2(10),
-oi_seq_id varchar2(10),
-req_item varchar2(10),
-constraint pk_wfoi PRIMARY KEY (wfoi_id),
-constraint fk_wfoi FOREIGN KEY (oi_seq_id) REFERENCES order_item,
-constraint fk_wfoi2 FOREIGN KEY (we_id) REFERENCES work_effort);
+wfoi_id varchar(10),
+fk_wfoi2 varchar(10) REFERENCES work_effort(we_id),
+fk_wfoi varchar(10) REFERENCES order_item(oi_seq_id),
+req_item varchar(10),
+constraint pk_wfoi PRIMARY KEY (wfoi_id)
+ );
 
 create table we_from_work_req(
-wfwr_id varchar2(10),
-we_id varchar2(10),
-work_req_id varchar2(10),
-constraint pk_wfwr PRIMARY KEY (wfwr_id),
-constraint fk_wfwr FOREIGN KEY (we_id) REFERENCES work_effort,
-constraint fk_wfwr2 FOREIGN KEY (work_req_id) REFERENCES work_req);
+wfwr_id varchar(10),
+fk_wfwr varchar(10)  REFERENCES work_effort(we_id),
+fk_wfwr2 varchar(10) REFERENCES work_req(work_req_id),
+constraint pk_wfwr PRIMARY KEY (wfwr_id));
 
 create table we_breakdown(
-id varchar2(10),
-we_bd_id varchar2(10),
-we_id varchar2(10),
-constraint pk_we_bd PRIMARY KEY (id),
-constraint fk_we_bd FOREIGN KEY (we_id) REFERENCES work_effort); 
+id varchar(10),
+fk_we_bd varchar(10) REFERENCES work_effort(we_id),
+we_id varchar(10),
+constraint pk_we_bd PRIMARY KEY (id)
+); 
 
 create table we_party_assignment_data(
-wepad_id varchar2(10),
-we_id varchar2(10),
-party_id varchar2(10),
-we_role_type varchar2(50),
-from_date varchar2(20),
-thru_date varchar2(20),
-com varchar2(50),
-constraint pk_wepad PRIMARY KEY (wepad_id),
-constraint fk_wepad FOREIGN KEY (we_id) REFERENCES work_effort,
-constraint fk_wepad2 FOREIGN KEY (party_id) REFERENCES party);
+wepad_id varchar(10),
+ fk_wepad varchar(10) REFERENCES work_effort(we_id),
+ fk_wepad2 varchar(10)  REFERENCES party(party_id),
+we_role_type varchar(50),
+from_date varchar(20),
+thru_date varchar(20),
+com varchar(50),
+constraint pk_wepad PRIMARY KEY (wepad_id)
+);
 
 create table party_skill_data(
-party_id varchar2(10),
-skill_type varchar2(50),
+psd_id varchar(10),
+fk_psd varchar(10) REFERENCES party(party_id),
+skill_type varchar(50),
 years_of_exp int,
 rating int,
-constraint fk_psd FOREIGN KEY (party_id) REFERENCES party);
+constraint pk_partyskill PRIMARY KEY (psd_id));
+
 
 create table we_status(
-status_id varchar2(10),
-id varchar2(10),
-status varchar2(50),
-constraint pk_we_status PRIMARY KEY (status_id),
-constraint fk_we_status FOREIGN KEY (id) REFERENCES we_breakdown);
+status_id varchar(10),
+cfk_we_status varchar(10)  REFERENCES we_breakdown(id),
+status varchar(50),
+constraint pk_we_status PRIMARY KEY (status_id)
+);
 
 create table time_sheet_entry(
-tse_id varchar2(10),
-ts_from varchar2(20),
-ts_thru varchar2(20),
-party_id varchar(10),
-we_id varchar2(10),
-te_from varchar2(20),
-te_thru varchar2(20),
+tse_id varchar(10),
+ts_from varchar(20),
+ts_thru varchar(20),
+fk_tse varchar(10) REFERENCES party(party_id),
+we_id varchar(10),
+te_from varchar(20),
+te_thru varchar(20),
 hours int,
-constraint pk_tse PRIMARY KEY (tse_id),
-constraint fk_tse FOREIGN KEY (party_id) REFERENCES party);
+constraint pk_tse PRIMARY KEY (tse_id)
+);
 
 create table rare_type(
-raretype_id varchar2(10),
-des varchar2(50),
+raretype_id varchar(10),
+des varchar(50),
 constraint pk_rt PRIMARY KEY (raretype_id));
 
 create table we_rate(
-werate_id varchar2(10),
-work_task varchar2(50),
-party_id varchar2(10),
-raretype_id varchar2(10),
-from_date varchar2(10),
-thru_date varchar2(10),
+werate_id varchar(10),
+work_task varchar(50),
+fk_werate varchar(10) REFERENCES party(party_id),
+fk_werate2 varchar(10) REFERENCES rare_type(raretype_id),
+from_date varchar(10),
+thru_date varchar(10),
 rate int,
-constraint pk_werate PRIMARY KEY (werate_id),
-constraint fk_werate FOREIGN KEY (party_id) REFERENCES party,
-constraint fk_werate2 FOREIGN KEY (raretype_id) REFERENCES rare_type);
+constraint pk_werate PRIMARY KEY (werate_id)
+);
 
 create table fixed_asset_type(
-fat_id varchar2(10),
-des varchar2(10),
-parent_asset varchar2(30),
+fat_id varchar(10),
+des varchar(10),
+parent_asset varchar(30),
 constraint pk_fat PRIMARY KEY (fat_id));
 
 create table fixed_asset(
-fasset_id varchar2(10),
-fat_id varchar2(10),
-name varchar2(50),
-date_acquired varchar2(20),
-last_service varchar2(20),
-next_service varchar2(20),
+fasset_id varchar(10),
+fk_fasset varchar(10) REFERENCES fixed_asset_type(fat_id),
+name varchar(50),
+date_acquired varchar(20),
+last_service varchar(20),
+next_service varchar(20),
 prod_capacity int,
-uom varchar2(20),
-constraint pk_fasset PRIMARY KEY (fasset_id),
-constraint fk_fasset FOREIGN KEY (fat_id) REFERENCES fixed_asset_type);
+uom varchar(20),
+constraint pk_fasset PRIMARY KEY (fasset_id)
+);
 
 create table fixed_asset_assign(
-faa_id varchar2(10),
-we_id varchar2(10),
-fat_id varchar2(10),
-from_date varchar2(10),
-thru_date varchar2(10),
-comm varchar2(50),
-constraint pk_faa PRIMARY KEY (faa_id),
-constraint fk_faa FOREIGN KEY (we_id) REFERENCES work_effort,
-constraint fk_faa2 FOREIGN KEY (fat_id) REFERENCES fixed_asset_type);
+faa_id varchar(10),
+fk_faa varchar(10) REFERENCES work_effort(we_id),
+fk_faa2 varchar(10) REFERENCES fixed_asset_type(fat_id),
+from_date varchar(10),
+thru_date varchar(10),
+comm varchar(50),
+constraint pk_faa PRIMARY KEY (faa_id)
+);
 
 create table party_faa(
-pfaa_id varchar2(10),
-party_id varchar2(10),
-fat_id varchar2(10),
-start_date varchar2(10),
-end_date varchar2(10),
-status varchar2(20),
-constraint pk_pfaa PRIMARY KEY (pfaa_id),
-constraint fk_pfaa FOREIGN KEY (party_id) REFERENCES party,
-constraint fk_pfaa2 FOREIGN KEY (fat_id) REFERENCES fixed_asset_type);
+pfaa_id varchar(10),
+fk_pfaa varchar(10) REFERENCES party(party_id),
+fk_pfaa2 varchar(10)  REFERENCES fixed_asset_type(fat_id),
+start_date varchar(10),
+end_date varchar(10),
+status varchar(20),
+constraint pk_pfaa PRIMARY KEY (pfaa_id)
+);
 
 create table we_good_standard(
-wegs_id varchar2(10),
-wetype_id varchar2(10),
-item varchar2(50),
+wegs_id varchar(10),
+fk_wegs varchar(10) REFERENCES we_type(wetype_id),
+item varchar(50),
 est_quantity int,
 est_cost int,
-constraint pk_wegs PRIMARY KEY (wegs_id),
-constraint fk_wegs FOREIGN KEY (wetype_id) REFERENCES we_type);
+constraint pk_wegs PRIMARY KEY (wegs_id)
+);
 
 create table we_fa_req(
-wefr_id varchar2(10),
-wetype_id varchar2(10),
-fat_id varchar2(10),
+wefr_id varchar(10),
+fk_wefr varchar(10)  REFERENCES we_type(wetype_id),
+fk_wefr2 varchar(10)  REFERENCES fixed_asset_type(fat_id),
 est_quantity int,
-est_duration varchar2(20),
-constraint pk_wefr PRIMARY KEY (wefr_id),
-constraint fk_wefr FOREIGN KEY (wetype_id) REFERENCES we_type,
-constraint fk_wefr2 FOREIGN KEY (fat_id) REFERENCES fixed_asset_type);
+est_duration varchar(20),
+constraint pk_wefr PRIMARY KEY (wefr_id)
+);
 
 
